@@ -1,0 +1,16 @@
+[project]
+name = "jepa-gymnasium-lake"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = "==3.12.*"
+dependencies = [
+    "gymnasium>=1.0.0",
+    "lightning>=2.5.0.post0",
+    "matplotlib>=3.9.4",
+    "numpy>=2.0.2",
+    "pygame>=2.6.1",
+    "scikit-learn>=1.6.1",
+    "tensorboard>=2.19.0",
+    "torch>=2.6.0",
+    "torchvision>=0.21.0",
+]

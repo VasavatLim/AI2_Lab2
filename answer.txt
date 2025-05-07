@@ -1,0 +1,22 @@
+1.1)
+
+rgb_array it appear that there is a model from image like character, chari(spawn point), lake, snow floor
+
+but render_mode = minimal you see only the block the white one represent normal floor, blue one the lake and red one the character
+
+1.2: What are maps in the Frozen Lake environment? 
+
+
+
+1.3: How are environments defined, i.e., what does "SFFF", "FHFH", "FFFH", 
+"HFFG" mean? 
+
+
+1.4: What kind of environments are possible in the Frozen Lake environment? 
+Must it be a square matrix (width = height)? Can the width and height be odd values? 
+
+
+1.5: What are the possible actions in the Frozen Lake environment? 
+
+
+1.6: What happens if a player is stuck (surrounded by lakes)? 

@@ -1,0 +1,7 @@
+uv run python human_play.py
+
+uv run python train.py
+
+uv run tensorboard --logdir tb_logs
+
+http://localhost:6006
