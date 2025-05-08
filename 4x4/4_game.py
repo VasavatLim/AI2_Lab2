@@ -6,8 +6,6 @@ import pygame
 import gymnasium as gym
 from gymnasium import register, Env
 
-from frozen_lake import generate_random_map 
-
 # Constants for actions
 NO_ACTION = None  # No action to be taken (used for cases where no action is required)
 QUIT_ACTION = -1  # Action to quit the game
@@ -88,13 +86,22 @@ def register_custom_frozen_lake() -> None:
     )
 
 
-from frozen_lake import generate_random_map  # add at top
+def generate_frozen_lake_env(env_id: str, map_size: int = 4) -> Env:
+    """
+    Generates a custom FrozenLake environment with a random map.
 
-def generate_frozen_lake_env(env_id: str, map_size: int = 8) -> Env:
-    custom_map = generate_random_map(size=map_size, p=0.9)  # more 'F' tiles
+    This function uses a helper function to create a random map where 'S' is the starting
+    position, 'H' are holes, and 'F' are frozen surfaces. The function then creates a Gym
+    environment using this random map and returns it.
+
+    :param env_id: Id of frozen lake environment
+    :param map_size: Size of the map
+    :return: Frozen lake environment
+    """
+
+    # Create and return the Gym environment using the custom map
     return gym.make(
         env_id,
-        desc=custom_map,
         is_slippery=False,
         render_mode='rgb_array',
     )

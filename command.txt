@@ -1,8 +1,11 @@
+
 uv run python human_play.py
+uv run python dream_play.py
 
 uv run python train.py
 
 uv run python eval.py
+uv run python eval_search.py
 
 uv run tensorboard --logdir tb_logs
 
