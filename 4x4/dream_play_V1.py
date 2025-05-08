@@ -29,18 +29,19 @@ state_dict = {k.replace("model.", ""): v for k, v in ckpt["state_dict"].items()}
 model.load_state_dict(state_dict, strict=False)
 model.eval()
 
-# === Scoring function for predicted images (goal-aware) ===
+# === Fix the goal color from the bottom-right tile ===
+raw_img = env.render()
+goal_tile_rgb = raw_img[-1, -1]  # Sample bottom-right pixel
+goal_color = goal_tile_rgb / 255.0  # Normalize to [0, 1]
+print(f"[INFO] Fixed goal color from bottom-right: {goal_color}")
+
+# === Scoring function for predicted images ===
 def score_image(img_tensor):
-    """
-    Scores the predicted image based on similarity to goal color.
-    Assumes the goal is yellow (RGB: 255,255,0), which corresponds to [1.0, 1.0, 0.0] in float.
-    """
     img_np = img_tensor.squeeze().detach().numpy()  # [3, H, W]
     img_np = np.transpose(img_np, (1, 2, 0))  # [H, W, C]
-    goal_color = np.array([1.0, 1.0, 0.0])  # Adjust this if your goal is another color
     diff = np.abs(img_np - goal_color)
-    distance = diff.sum(axis=2)  # Pixel-wise L1 distance
-    return -np.mean(distance)  # Lower distance = better (closer to goal color)
+    distance = diff.sum(axis=2)
+    return -np.mean(distance)  # Lower distance = closer to goal
 
 # === World model control loop ===
 action_space = [0, 1, 2, 3]  # Left, Down, Right, Up
