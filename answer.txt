@@ -20,3 +20,8 @@ Must it be a square matrix (width = height)? Can the width and height be odd val
 
 
 1.6: What happens if a player is stuck (surrounded by lakes)? 
+
+
+
+
+
