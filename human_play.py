@@ -6,8 +6,6 @@ from gymnasium.envs.registration import register
 
 from game import run_game, NO_ACTION, QUIT_ACTION, render_onto_screen
 
-from frozen_lake import generate_random_map  
-
 if __name__ == '__main__':
     pygame.init()  # Initialize Pygame
 
@@ -49,28 +47,17 @@ if __name__ == '__main__':
         return NO_ACTION  # Default action when no key is pressed
 
 
-    # # Generate an 8x8 random map with more frozen tiles (p=0.9)
-    # random_map = generate_random_map(size=8, p=0.9)
-
-    # # Create an instance of the custom FrozenLake environment with the new map
-    # env = gym.make(
-    #     'FrozenLakeCustom-v0',
-    #     desc=random_map,
-    #     is_slippery=False,
-    #     render_mode="rgb_array"
-    # )
-    # env.reset()
-
-   #### for 4x4 Map -============================
+    # Create an instance of the custom FrozenLake environment
     env = gym.make(
-        'FrozenLakeCustom-v0',
-        desc=["SFFF", "FHFH", "FFFH", "HFFG"],  # ← Original 4x4 map
-        is_slippery=False,
-        render_mode="rgb_array"
+        'FrozenLakeCustom-v0',  # ID of the registered environment
+        desc=["SFFF", "FHFH", "FFFH", "HFFF"],  # Grid layout (S = Start, F = Frozen, H = Hole, G = Goal)
+        is_slippery=False,  # Make movement deterministic (i.e., no slipping)
+
+        # -=== Task 1.1 ===------------
+        render_mode="rgb_array"  # Or minimal rendering mode
+        #render_mode="minimal"  # Or minimal rendering mode
     )
-    env.reset()
-
-
+    env.reset()  # Reset the environment to start a new episode
 
     # Create a Pygame window for rendering
     screen = pygame.display.set_mode((400, 400))  # Set window size to 400x400 pixels

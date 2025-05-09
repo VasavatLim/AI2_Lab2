@@ -88,16 +88,7 @@ def generate_random_map(
         grid[h] = 'H'
 
     # Convert grid to list of strings for Gym compatibility
-    # Add goal 'G' at a random empty (F) location
-    goal_pos = None
-    while not goal_pos:
-        r, c = random.randint(0, size - 1), random.randint(0, size - 1)
-        if grid[r][c] == 'F':
-            grid[r][c] = 'G'
-            goal_pos = (r, c)
-
     return ["".join(row) for row in grid]
-
 
 
 

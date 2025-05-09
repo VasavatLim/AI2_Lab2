@@ -1,5 +1,3 @@
-
-
 from functools import partial
 
 import matplotlib.pyplot as plt
@@ -38,11 +36,10 @@ def dreaming():
 
     # Load the dataset with custom Frozen Lake environment
     dataset = GymDataset(
-        partial(generate_frozen_lake_env, env_id=CUSTOM_FROZEN_LAKE_ID, map_size=4), #Change map size 4 or 8
+        partial(generate_frozen_lake_env, env_id=CUSTOM_FROZEN_LAKE_ID),
         initialize_f=register_custom_frozen_lake,
-        transforms=Compose([Resize(64)])
+        transforms=Compose([Resize(64)]) # Resize images to 64x64
     )
-
 
     # TODO: Instantiate the Encoder, Decoder, and Predictor
     encoder = CNNEncoder(channels=[3, 4, 8, 16])

@@ -24,7 +24,7 @@ def train():
     n_input_channels = 3  # Number of input channels (e.g., RGB images)
     img_size = 64  # Image resolution
     batch_size = 64 # TODO 32 or 64
-    max_epochs = 10  # TODO 10 or 20
+    max_epochs = 50  # TODO 10 or 20
 
 
     # Initialize the dataset and dataloader

@@ -88,16 +88,7 @@ def generate_random_map(
         grid[h] = 'H'
 
     # Convert grid to list of strings for Gym compatibility
-    # Add goal 'G' at a random empty (F) location
-    goal_pos = None
-    while not goal_pos:
-        r, c = random.randint(0, size - 1), random.randint(0, size - 1)
-        if grid[r][c] == 'F':
-            grid[r][c] = 'G'
-            goal_pos = (r, c)
-
     return ["".join(row) for row in grid]
-
 
 
 
@@ -260,7 +251,7 @@ class FrozenLakeEnv(Env):
 
         if self.render_mode == "human":
             self.render()
-        # truncation=False as the time limit is handled by the `TimeLimit` wrapper added during `make`
+        # truncation=False as the time limit is handled by the TimeLimit wrapper added during make
         return int(s), r, t, False, {"prob": p}
 
     def reset(
@@ -464,7 +455,7 @@ class FrozenLakeRenderer:
             import pygame
         except ImportError as e:
             raise DependencyNotInstalled(
-                'pygame is not installed, run `pip install "gymnasium[toy-text]"`'
+                'pygame is not installed, run pip install "gymnasium[toy-text]"'
             ) from e
 
         if self.window_surface is None:

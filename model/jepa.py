@@ -99,9 +99,10 @@ class Predictor(nn.Module):
 
         # === Task 2.2: Fully connected layers for prediction ===
         self.net = nn.Sequential(
-            nn.Linear(input_dim, encoder_dim * 2),  # [s_x + s_a] → 2 * s_x
+            nn.Linear(input_dim, input_dim * 2),  # [s_x + s_a] → 2 * s_x
             nn.ReLU(),
-            nn.Linear(encoder_dim * 2, encoder_dim),  # → s_x
+            nn.Linear(input_dim * 2, encoder_dim),  # → s_x
+            
         )
 
     def forward(self, s_x: torch.Tensor, a: torch.Tensor) -> torch.Tensor:
@@ -143,7 +144,7 @@ class JEPA(L.LightningModule):
 
 
         # Task 3.1(True) and 3.2 (False)
-        self.use_vicreg_loss = False
+        self.use_vicreg_loss = True
 
     def vicreg(self, x: torch.Tensor, y: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
         """
